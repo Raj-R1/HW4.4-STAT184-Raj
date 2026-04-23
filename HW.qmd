@@ -1,0 +1,311 @@
+---
+title: "HW #3.4: Applied Data Visualizations"
+author: "Raj Ramnani"
+date: "April 15, 2026"
+format: pdf
+---
+
+## 1) Analysis on Busiest Airports
+
+In this section, I examine passenger traffic trends for six of the busiest airports in the world across the years 2020 through 2025.
+
+### a) Steps
+
+I first organized the airport passenger totals into a tidy data set, then created both a table and a plot to support comparison across airports and across years. The data used for this section came from Wikipedia’s "List of busiest airports by passenger traffic" article. The objective of this section is to compare how passenger traffic changed over time for the selected airports, identify which airports handled the highest totals, and observe patterns across the 2020–2025 period.
+
+### b) Table
+
+The table below presents the annual passenger totals for each of the six selected airports from 2020 through 2025.
+
+![](TABLE.png)
+
+### c) Plot
+
+The data above was then turned into a plot through the use of ggplot2 in R. This plot makes it easier to see overall trends in passenger traffic over time and to compare how the selected airports changed from 2020 through 2025.
+
+![](PLOT1.png)
+
+### d) Narrative for Plot/Table
+
+The table and line graph together make it possible to compare both the exact passenger totals and the overall traffic trends for the six selected airports from 2020 through 2025. The table provides the specific yearly counts for ATL, DXB, FRA, IST, ORD, and PKX, while the line graph makes it easier to see how those values changed across the full period.
+
+Several clear patterns appear in the data: most airports remain in a steep climb in the number of passengers since 2020, which seems to be gradually balancing out. Specifically, Atlanta (ATL) remained the busiest airport in the group and stayed above 100 million passengers from 2023 onward, while Dubai (DXB), Istanbul (IST), and O’Hare (ORD) also showed strong growth and ended 2025 at relatively high levels. Frankfurt (FRA) increased more gradually, and Beijing Daxing (PKX) showed growth over the years, with the pattern continuing despite an outlier.
+
+## 2) Monte Carlo Simulation
+
+The Monte Carlo method is an approach to evaluating integrals using a computer simulation, by randomly sampling points and using the proportion that fell under the curve to estimate the area of the function.
+
+Using random points generated within a bounded rectangular region, I classified each point as either above the function or on or below it, then used the proportion of points under the curve to estimate the area. I used this method multiple times, each with a different value of n (i.e the number of points used to evaluate the integral). A higher value of n correlates with a higher accuracy for the simulation.
+
+### a) Steps
+
+I first identified the function I needed to integrate: the Beta distribution density function with parameters 2 and 2. I then determined the x-bounds from 0 to 1 and the y-bounds from 0 to 1.5. After setting those bounds, I generated random points inside that rectangle and calculated the value of the function at each x-coordinate.
+
+Next, I classified each sampled point as either above the function or on or below it. Using that classification, I found the proportion of points that fell on or below the curve and multiplied that proportion by the total area of the rectangle to estimate the value of the integral. I repeated this process for several sample sizes, specifically n = 10, 100, 1000, and 10000, and then displayed the results in a small multiple plot to compare how the estimate changed as the number of sampled points increased.
+
+### b) Plot
+
+![](mc.png)
+
+### c) Narrative text for Plot
+
+The small multiple plot shows how the Monte Carlo estimate becomes more accurate and stable as the number of sampled points increases, and it helps support the conclusion that the exact value of the integral is 1. In the first two panels, where only 10 and 100 points are used, the estimates are much rougher and show more variation because the random points do not yet fill the rectangular region very evenly. However, the estimated integral value is already very close to 1. As the sample size increases to 1000 and then 10000, the points cover the space much more uniformly, and the estimated integrals, 0.9945 and 0.9972, become extremely close to 1. This pattern is important because the assigned function is the Beta(2,2) probability density function on the interval from 0 to 1, so the exact area under the curve should be 1. The later panels in the small multiple provide both visual and numerical support for that answer by showing the estimates settling near 1 as the resolution increases. This confirms that the simulation is an accurate way to estimate integrals, given enough points.
+
+## 3) Planning vs Generic Prompts with ChatGPT
+
+### a) My plan
+
+-   To clean and tidy the calcium study data so that the two treatment groups can be compared across time
+
+-   To reorganize the data from a wide format into a long format that is easier to analyze and visualize
+
+-   To identify how calcium levels changed from the initial measurement through Year 3 for women in the null treatment group and the diet/exercise group
+
+-   To prepare a data set that supports comparing trends over time, differences between groups, and possible patterns in calcium loss or improvement
+
+-   To create a plot/graph that would help explore the difference in ulnar calcium measurements across time and the two treatment groups.
+
+### b) Response to a Generic Prompt
+
+``` md
+Prompt: Create a data visualization for these data. Calcium.csv
+{attached_image}
+I created a visualization showing the average value of each column in your dataset.
+What this shows:
+• Each point represents the mean (average) of one column (y0, y1, y2, y3, etc.).
+• You can quickly compare which variables tend to have higher or lower values overall.
+• For example, some columns cluster around ~70–73, while others drop closer to ~65.
+ 
+If you want something more insightful, I can also create:
+• Boxplots (to show spread and outliers)
+• Time series plots (if rows represent time/order)
+• Correlation heatmaps
+• Side-by-side comparisons (e.g., y0 vs y0.1)
+Just tell me 👍
+Prompt: What is your version information?
+You’re chatting with ChatGPT based on the GPT-5.3 architecture.
+Key details:
+• Model: GPT-5.3
+• Knowledge cutoff: August 2025
+• Current date (system): March 31, 2026
+If you need more technical details (capabilities, differences vs GPT-4/5, etc.), just let me know 👍
+(This chat took place on Tuesday, March 31st, 2026.)
+```
+
+The response produced an attached image, as follows:
+
+![](GPTPLOT.png)
+
+### c) Response to a Prompt with a plan
+
+``` md
+I cleaned the data into long format and made an exploratory line chart comparing the two groups across time.
+
+Files:
+    •   Cleaned long-format CSV￼
+    •   Exploratory plot (PNG)￼
+
+What the graph shows:
+    •   The null treatment group starts higher at baseline and stays a bit higher through Year 2
+    •   The diet/exercise group rises gradually from baseline to Year 2
+    •   Both groups drop sharply by Year 3
+    •   By Year 3, the group means are very close:
+    •   Null treatment: 64.79
+    •   Diet/exercise: 64.53
+
+One caution:
+    •   The file appears to have 15 observations for the null-treatment baseline-to-Year-3 set and 16 for the diet/exercise set, so there may be one missing/null-treatment record in the raw file
+
+Assumption used:
+    •   First 4 columns = null treatment
+    •   Second 4 columns = diet/exercise
+
+If that group mapping is reversed, the shape of the trend stays the same, but the labels should be swapped.
+```
+
+The response came with an attached image representing the plot, as follows:
+
+![](Mean%20Ulnar%20Calcium%20Over%20Time%20by%20Treatment%20Group.png)
+
+### d) Narrative (Comparing responses)
+
+The response created after giving a clear plan is much stronger because it is more specific to the actual study design, the treatment groups, and the purpose of the data. The generic response only summarizes a simple average-by-column plot, which does not really reflect the longitudinal structure of the calcium study or support meaningful comparison between the null-treatment group and the diet/exercise group. In contrast, the planned response correctly cleans the data into long format, identifies the two groups across time, and produces a line chart that better matches the context of the study. This makes the second response more useful because it goes beyond surface-level description and instead supports actual interpretation of how calcium levels changed over the four-year period. This proves that GenAI tools cannot provide good results when given generic instructions, and they need prompts with a plan and instructions to perform well.
+
+## 4) Appendix A: GenAI Usage
+
+I only used OpenAI ChatGPT 5.4 in Thinking mode on April 15, 2026 for executing the planned prompt as instructed in this assignment. Transcripts:
+
+``` md
+Me: To clean and tidy the calcium study data so that the two treatment groups can be compared across time
+    •   To reorganize the data from a wide format into a long format that is easier to analyze and visualize
+    •   To identify how calcium levels changed from the initial measurement through Year 3 for women in the null treatment group and the diet/exercise group
+    •   To prepare a data set that supports comparing trends over time, differences between groups, and possible patterns in calcium loss or improvement
+
+To create a plot/graph that would help you explore the difference in ulnar calcium measurements across time and the two treatment groups.
+
+Please execute this plan.
+
+--------------
+
+ChatGPT: I cleaned the data into long format and made an exploratory line chart comparing the two groups across time.
+
+Files:
+    •   Cleaned long-format CSV￼
+    •   Exploratory plot (PNG)￼
+
+What the graph shows:
+    •   The null treatment group starts higher at baseline and stays a bit higher through Year 2
+    •   The diet/exercise group rises gradually from baseline to Year 2
+    •   Both groups drop sharply by Year 3
+    •   By Year 3, the group means are very close:
+    •   Null treatment: 64.79
+    •   Diet/exercise: 64.53
+
+One caution:
+    •   The file appears to have 15 observations for the null-treatment baseline-to-Year-3 set and 16 for the diet/exercise set, so there may be one missing/null-treatment record in the raw file
+
+Assumption used:
+    •   First 4 columns = null treatment
+    •   Second 4 columns = diet/exercise
+
+If that group mapping is reversed, the shape of the trend stays the same, but the labels should be swapped.
+```
+
+The attached response included an image, as shown earlier.
+
+## 5) Appendix B: Code
+
+### a) Busiest Airports Wrangling
+
+``` r
+library(tidyverse)
+
+years <- 2020:2025
+
+airport_names <- c(
+  "Hartsfield-Jackson Atlanta International Airport",
+  "Frankfurt Airport",
+  "Beijing Daxing International Airport",
+  "Shanghai Pudong International Airport",
+  "Istanbul Airport",
+  "Singapore Changi Airport"
+)
+
+airport_codes <- c("ATL", "FRA", "PKX", "PVG", "IST", "SIN")
+
+passenger_lists <- list(
+  c(42918685, 75704760, 93699630, 104653451, 108067766, 106302208),
+  c(18768601, NA, 48918482, 59355389, 61564957, NA),
+  c(NA, NA, 25051012, NA, 49441029, 53618949),
+  c(30476531, 32206814, 14178385, 54496397, 76787039, 84994548),
+  c(23410380, 37181907, 64518073, 76011907, 80430740, 84513937),
+  c(11800000, 3053000, 32200000, 58900000, 67700000, 69980000)
+)
+
+airports_tidy <- data.frame()
+
+for(i in 1:length(airport_names)) {
+  temp <- data.frame(
+    year = years,
+    airport = airport_names[i],
+    code = airport_codes[i],
+    passengers = passenger_lists[[i]]
+  )
+  
+  airports_tidy <- bind_rows(airports_tidy, temp)
+}
+
+airports_tidy$year <- as.integer(airports_tidy$year)
+airports_tidy$passengers <- as.numeric(airports_tidy$passengers)
+airports_tidy$airport <- as.factor(airports_tidy$airport)
+airports_tidy$code <- as.factor(airports_tidy$code)
+
+airports_tidy <- airports_tidy %>%
+  arrange(code, year)
+```
+
+### b) Busiest Airport Table
+
+``` r
+airports_table <- airports_tidy %>%
+  select(code, airport, year, passengers) %>%
+  pivot_wider(
+    names_from = year,
+    values_from = passengers
+  ) %>%
+  arrange(code)
+```
+
+### c) Busiest Airports Plot
+
+``` r
+library(tidyverse)
+
+airport_plot <- ggplot(
+  airports_tidy,
+  aes(x = year, y = passengers, color = code)
+) +
+  geom_line(aes(group = code), linewidth=1.5) +
+  geom_point(size=2) +
+  labs(
+    title = "Passenger Traffic for Six Busy Airports, 2020-2025",
+    x = "Year",
+    y = "Passengers",
+    color = "Airport"
+  ) +
+  theme_minimal()
+
+airport_plot
+```
+
+### d) Monte Carlo Simulation
+
+``` r
+library(tidyverse)
+library(patchwork)
+
+x_min <- 0
+x_max <- 1
+y_min <- 0
+y_max <- 1.5
+
+make_plot <- function(n) {
+  
+  points_mc <- data.frame(
+    x = runif(n, x_min, x_max),
+    y = runif(n, y_min, y_max)
+  )
+  
+  points_mc <- points_mc %>%
+    mutate(
+      fx = dbeta(x, shape1 = 2, shape2 = 2),
+      flag = if_else(y <= fx, "on/below", "above")
+    )
+  
+  rectangle_area <- (x_max - x_min) * (y_max - y_min)
+  estimate <- mean(points_mc$flag == "on/below") * rectangle_area
+  
+  ggplot(points_mc, aes(x = x, y = y, color = flag)) +
+    geom_point() +
+    stat_function(
+      fun = dbeta,
+      args = list(shape1 = 2, shape2 = 2),
+      xlim = c(0, 1)
+    ) +
+    labs(
+      title = paste("Monte Carlo Integration, n =", n),
+      subtitle = paste("Estimated Integral =", round(estimate, 4)),
+      x = "x",
+      y = "y",
+      color = "Point Position"
+    ) +
+    theme_minimal()
+}
+
+plot10 <- make_plot(10)
+plot100 <- make_plot(100)
+plot1000 <- make_plot(1000)
+plot10000 <- make_plot(10000)
+
+plot10 + plot100 + plot1000 + plot10000
+```
