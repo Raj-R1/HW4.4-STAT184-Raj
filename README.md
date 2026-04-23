@@ -1,6 +1,4 @@
 # HW #3.4: Applied Data Visualizations
-
-## Project Title
 This repository contains my work for HW #3.4: Applied Data Visualizations. It presents a Quarto report that combines data wrangling, visualization, simulation, and reflection on prompt planning with ChatGPT.
 
 ## Overview
