@@ -1,25 +1,31 @@
 # Plan Document
 
-## Project Plan
+## Project 3.4 Plan
 
 ### Goals
-- Complete and submit a clean GitHub repository for this project
-- Include the required Quarto source file and PDF output
-- Make sure the repo matches the rubric requirements
+- Complete Project 3.4 using clear, organized, and reproducible analysis
+- Present findings from the busiest airports data in a way that makes trends across years easy to understand
+- Use a Monte Carlo simulation to show how random sampling can be used to estimate an integral
+- Produce a final QMD file and PDF output that meet the assignment requirements
 
 ### Needs
-- A README file
-- A QMD file
-- A PDF output file
-- Clear project organization
-- Required GitHub activity such as issues, branches, commits, and a pull request
+- A cleaned and organized data set for the busiest airports section
+- A table and plot that show airport passenger traffic clearly
+- A working Monte Carlo simulation with multiple sample sizes
+- Narrative text that explains the purpose, process, and results of each section
+- A final rendered PDF and the source QMD file in the repository
 
 ### Steps
-1. Add the project files to the repository
-2. Check that the QMD file renders correctly to PDF
-3. Review the README so it clearly explains the project
-4. Make sure all required files are present and named clearly
-5. Do a final check against the rubric before submitting
+1. Organize the busiest airports data into a tidy format for analysis
+2. Create a table that compares airport passenger totals across years
+3. Create a plot that shows trends in passenger traffic over time
+4. Write narrative text explaining the airport data, visualizations, and main patterns
+5. Set up the Monte Carlo simulation for the assigned function and bounds
+6. Run the simulation with multiple values of n to compare accuracy
+7. Create the simulation plot and explain how the estimate improves as n increases
+8. Review the full project for clarity, correctness, and rubric requirements
+9. Render the final QMD file to PDF and confirm both files are included in the repo
+
 
 ## Repository Plan
 
