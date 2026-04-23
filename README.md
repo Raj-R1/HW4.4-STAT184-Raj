@@ -1,28 +1,36 @@
-# Project Title
+# HW #3.4: Applied Data Visualizations
 
-Write a 1-2 sentences that quickly and clearly convey what your repo is for.
+## Project Title
+This repository contains my work for HW #3.4: Applied Data Visualizations. It presents a Quarto report that combines data wrangling, visualization, simulation, and reflection on prompt planning with ChatGPT.
 
 ## Overview
+The purpose of this project is to demonstrate clear and reproducible data analysis using Quarto and R. The report includes three main parts: an analysis of passenger traffic trends at major airports, a Monte Carlo simulation used to estimate an integral, and a comparison between a generic ChatGPT prompt and a plan-based prompt for analyzing calcium study data. Together, these sections show how narrative, code, and visualizations can be combined into a single polished report.
 
-Expand on those introductory sentences with a brief but informative description of your project's purpose and goals. This section should help visitors decide whether they should dig deeper into your repo/project.
+## Interesting Insight
+One interesting insight from the project is that the Monte Carlo simulation becomes noticeably more stable and accurate as the sample size increases. With small values of n, the estimate varies more because the random points do not evenly cover the region, but with larger values such as 1000 and 10000, the estimate settles very close to the true value of 1. The small-multiple plot in the report makes that pattern easy to comprehend.
 
-### Interesting Insight (Optional)
-
-This is optional but highly recommended. You'll include one interesting insight from your project as part of the README. This insight is most effective when you include a visual. Keep in mind that this visual must be included as an image file (e.g., JPG, PNG, etc.). You can export plots created with `{ggplot2}` by using the function `ggsave`.
 
 ## Data Sources and Acknowledgements
+This project uses data from the following sources:
+- Wikipedia’s List of busiest airports by passenger traffic for the airport traffic section [find it here!](https://en.wikipedia.org/wiki/List_of_busiest_airports_by_passenger_traffic)
+- The calcium study dataset provided for the prompt planning portion of the assignment
+- Simulated random samples generated in R for the Monte Carlo integration section
 
-Be sure to list where you got any data used within the project. Be sure to acknowledge any one whose work or elements you're drawing upon.
 
 ## Current Plan
-
-Provide some information about what you intend to doe with the project. You can additionally refer the visitor to your detailed plan document.
+My current plan is to continue refining the repository so that it clearly meets all assignment and rubric requirements. This includes keeping the Quarto report and rendered PDF organized, documenting the repo clearly, and using GitHub features such as branches, issues, commits, and pull requests to manage revisions. More detail is provided in the separate `PLAN.md` file.
 
 ## Repo Structure
-
-Use this section to explain the structure of your repo. This should help visitors quickly figure out where they should look to find certain elements. Further, you can use this space to highlight and briefly explain important/key files in the repo.
-
+- `HW-3-4-Applied-Data-Visualizations.qmd` - main Quarto source file for the report
+- `HW-3-4-Applied-Data-Visualizations.pdf` - rendered PDF output of the report
+- `README.md` - overview of the project, repo contents, and contact information
+- `PLAN.md` - project plan and repository maintenance plan
+- `data/` - source data files
+- `images/` - exported figures
 
 ## Authors
+**Raj Ramnani**  
+Primary author of this project
 
-Give information about who are the authors of the project and how people can get in touch if they have questions.
+For questions about the repository or project, contact me at:  
+- [email](mailto:rajramnani132007@gmail.com)
